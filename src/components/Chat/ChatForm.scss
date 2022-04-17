@@ -1,0 +1,32 @@
+@import "styles/config";
+
+.chat-form {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.chat-form__control {
+  flex-grow: 1;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-size: 1rem;
+  padding: 0.75em 1em;
+  width: 100%;
+  background-color: $gray-400;
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  resize: none;
+  font-family: inherit;
+  transition: all;
+
+  &:focus {
+    outline: 0;
+    border-color: $primary;
+  }
+}
+
+.chat-form__submit {
+  padding: 0.75rem;
+  border-radius: 50%;
+}

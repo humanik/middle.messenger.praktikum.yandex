@@ -1,0 +1,38 @@
+@import "styles/config";
+
+.modal {
+  padding: 0;
+  border: none;
+  border-radius: 0.75rem;
+
+  &::backdrop {
+    background-color: rgba(#000, 0.5);
+  }
+
+  &[open],
+  &[open]::backdrop {
+    animation: fade-in 300ms;
+  }
+
+  &[closing],
+  &[closing]::backdrop {
+    animation: fade-out 300ms;
+  }
+}
+
+.modal__content {
+  padding: 1.5em;
+  background-color: $white;
+  border-radius: 0.5rem;
+  width: 340px;
+}
+
+.modal__title {
+  margin-bottom: 2em;
+  font-size: 1.25em;
+  text-align: center;
+}
+
+.modal__footer {
+  margin-top: 2em;
+}

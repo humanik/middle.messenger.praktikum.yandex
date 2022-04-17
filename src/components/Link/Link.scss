@@ -1,0 +1,43 @@
+@import "styles/config";
+
+.link {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  background-color: transparent;
+  transition: all 300ms;
+  text-decoration: none;
+  line-height: 1.2;
+  user-select: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    outline: 0;
+  }
+}
+
+.link-primary {
+  color: $primary;
+
+  &:hover,
+  &:focus {
+    color: darken($primary, 5%);
+  }
+}
+
+.link-danger {
+  color: $danger;
+
+  &:hover,
+  &:focus {
+    color: darken($danger, 5%);
+  }
+}
+
+.link-xs {
+  font-size: 0.75rem;
+}

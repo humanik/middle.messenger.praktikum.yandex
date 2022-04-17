@@ -1,0 +1,31 @@
+@import "styles/config";
+
+.sidebar-header {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $border-color;
+}
+
+.sidebar-header__profile {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  color: $gray-600;
+  text-decoration: none;
+  margin-left: auto;
+  font-size: 0.75rem;
+  transition: all 300ms;
+  margin-bottom: 0.5rem;
+
+  &::after {
+    content: ">";
+    margin-left: 0.5rem;
+  }
+
+  &:hover,
+  &:focus {
+    color: $primary;
+    outline: 0;
+  }
+}

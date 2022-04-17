@@ -1,0 +1,26 @@
+.popover {
+  position: relative;
+}
+
+.popover__content {
+  display: none;
+  position: absolute;
+  z-index: 10;
+
+  .popover[data-position="bottom-right"] & {
+    right: 0;
+    bottom: -1rem;
+    transform: translateY(100%);
+  }
+
+  .popover[data-position="top-left"] & {
+    top: -1rem;
+    left: 0;
+    transform: translateY(-100%);
+  }
+
+  .popover[open] & {
+    display: block;
+    animation: fade-in 300ms;
+  }
+}

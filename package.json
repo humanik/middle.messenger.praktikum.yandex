@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.4.1",
+    "@parcel/transformer-sass": "^2.4.1",
+    "eslint-config-standard": "^16.0.3",
+    "parcel": "^2.4.1"
+  },
+  "alias": {
+    "pages": "./src/pages",
+    "images": "./src/images",
+    "template": "./src/template",
+    "components": "./src/components"
+  },
+  "source": "src/index.html",
+  "scripts": {
+    "dev": "parcel",
+    "start": "node server.js",
+    "build": "parcel build"
+  },
+  "engines": {
+    "node": ">=12"
+  }
+}

@@ -1,0 +1,37 @@
+@import "styles/config";
+
+.profile-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $gray-300;
+  border: none;
+  border-right: 2px solid $border-color;
+  height: 100vh;
+  width: 4rem;
+  padding: 0;
+  cursor: pointer;
+  transition: all 300ms;
+
+  &:hover,
+  &:focus {
+    outline: 0;
+    background-color: darken($gray-300, 4%);
+    border-color: darken($border-color, 4%);
+
+    .profile-back__circle {
+      background-color: darken($primary, 5%);
+    }
+  }
+}
+
+.profile-back__circle {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: $primary;
+  border-radius: 50%;
+  transform: rotate(180deg);
+}
