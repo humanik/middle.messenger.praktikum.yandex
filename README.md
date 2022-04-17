@@ -1,6 +1,8 @@
 ## App
 [Sprint 1 pull request](https://github.com/humanik/middle.messenger.praktikum.yandex/pull/1)
+
 Yandex Practicum chat app without third party libraries.
+
 [https://practicum-chat.netlify.app/](https://practicum-chat.netlify.app/)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a10928e8-303f-42b7-891d-c6ef8f10a7e9/deploy-status)](https://app.netlify.com/sites/practicum-chat/deploys)
