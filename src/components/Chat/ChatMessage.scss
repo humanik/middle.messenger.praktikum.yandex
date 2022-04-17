@@ -1,0 +1,64 @@
+@import "styles/config";
+
+.chat-message {
+  position: relative;
+  flex-shrink: 0;
+  background-color: darken($gray-300, 1%);
+  padding: 0.75em 1em;
+  border-radius: 1em;
+  max-width: 32em;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.chat-message__content {
+  white-space: pre-wrap;
+
+  &::after {
+    content: "";
+    float: right;
+    width: 3em;
+    height: 0.75em;
+  }
+}
+
+.chat-message__time {
+  font-size: 0.75em;
+  position: absolute;
+  bottom: 0.75em;
+  right: 1em;
+  color: $gray-600;
+  float: right;
+}
+
+.chat-message--in {
+  margin-right: auto;
+}
+
+.chat-message--out {
+  background-color: $primary-light;
+  margin-left: auto;
+}
+
+.chat-message--img {
+  padding: 0;
+  border: 1px solid $border-color;
+  overflow: hidden;
+
+  img {
+    display: inline-block;
+  }
+
+  .chat-message__content::after {
+    display: none;
+  }
+
+  .chat-message__time {
+    display: inline-block;
+    border-radius: 0.5em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    color: $white;
+    background-color: $gray-600;
+  }
+}

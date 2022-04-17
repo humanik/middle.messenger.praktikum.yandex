@@ -1,0 +1,16 @@
+.avatar-modal {
+  .modal__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.avatar-modal__preview {
+  display: none;
+  margin-top: 1rem;
+
+  &[show] {
+    display: block;
+  }
+}

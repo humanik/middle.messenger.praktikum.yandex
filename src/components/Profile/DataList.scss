@@ -1,0 +1,26 @@
+@import "styles/config";
+
+.data-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.data-list-item {
+  display: flex;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+
+  & + & {
+    border-top: 1px solid $border-color;
+  }
+}
+
+.data-list-item__label {
+  margin-right: auto;
+}
+
+.data-list-item__value {
+  margin-left: 2em;
+  color: $gray-600;
+}

@@ -1,0 +1,18 @@
+@import "styles/config.scss";
+
+.chat-header {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $border-color;
+  z-index: 1;
+}
+
+.chat-header__info {
+  display: flex;
+  align-items: center;
+}
+
+.chat-header__name {
+  margin-left: 1.25rem;
+  font-weight: 600;
+}

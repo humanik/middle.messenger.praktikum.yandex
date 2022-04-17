@@ -1,0 +1,32 @@
+@import "styles/config";
+
+.profile-avatar {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-avatar__change {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0;
+  margin: 0;
+  background-color: $white;
+  opacity: 0;
+  transition: all 300ms;
+  border: none;
+  cursor: pointer;
+  color: fff;
+  line-height: 1.2;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: rgba(#000, 0.5);
+    opacity: 1;
+  }
+}
