@@ -16,7 +16,7 @@ export default function ChatHeader ({ name } = {}) {
     ${Avatar({ size: 'small' })}
     <div class="chat-header__name">${name}</div>
     ${Popover({
-      className: 'ml-auto',
+      className: 'chat-header__actions',
       content: Menu,
       trigger: IconButton({ icon: MenuIcon, className: 'popover__trigger', onclick: togglePopover })
     })}

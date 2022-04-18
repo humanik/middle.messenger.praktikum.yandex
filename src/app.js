@@ -25,6 +25,9 @@ history.replaceState = historyOverride('replaceState')
 function loadRouteCountent () {
   let page = NotFoundPage
   const root = document.querySelector('#root')
+  if (!root) {
+    return
+  }
 
   switch (location.pathname) {
     case '/':

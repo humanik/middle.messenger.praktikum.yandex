@@ -15,6 +15,9 @@ const submitHandler = (e) => {
   const input = document.querySelector('#chat-input')
   const chatContent = document.querySelector('.chat-content')
   const text = input.value.trim()
+  if (!input || !chatContent) {
+    return
+  }
   if (text.length > 0) {
     const time = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`
     const message = ChatMessage({ send: 'out', text, time })

@@ -8,9 +8,9 @@ import DataList from './DataList'
 import './Profile.scss'
 import ProfileAvatar from './ProfileAvatar'
 
-const avatarModalID = 'modal-avatar'
-const changeDataModalID = 'modal-change-data'
-const changePasswordModalID = 'modal-change-password'
+const AVATAR_MODAL_ID = 'modal-avatar'
+const DATA_MODAL_ID = 'modal-change-data'
+const PASSOWRD_MODAL_ID = 'modal-change-password'
 
 const data = [
   { label: 'Почта', name: 'email', value: 'pochta@yandex.ru' },
@@ -22,19 +22,19 @@ const data = [
 ]
 
 const actions = [
-  { label: Link({ label: 'Change data', tag: 'button', onclick: showModal(changeDataModalID) }) },
-  { label: Link({ label: 'Change password', tag: 'button', onclick: showModal(changePasswordModalID) }) },
+  { label: Link({ label: 'Change data', tag: 'button', onclick: showModal(DATA_MODAL_ID) }) },
+  { label: Link({ label: 'Change password', tag: 'button', onclick: showModal(PASSOWRD_MODAL_ID) }) },
   { label: Link({ label: 'Logout', variant: 'danger', tag: 'button' }) }
 ]
 
 export default function Profile () {
   return html`
 <div class="profile">
-  ${ProfileAvatar({ onclick: showModal(avatarModalID), onopen: (e) => { console.log(e) } })}
+  ${ProfileAvatar({ onclick: showModal(AVATAR_MODAL_ID), onopen: (e) => { console.log(e) } })}
   <span class="profile__username">Ivan</span>
   ${DataList({ items: data, className: 'profile__data' })}
   ${DataList({ items: actions, className: 'profile__actions' })}
-  ${AvatarModal({ id: avatarModalID })}
+  ${AvatarModal({ id: AVATAR_MODAL_ID })}
   ${ChangeDataModal}
   ${ChangePasswordModal}
 </div>`
@@ -48,7 +48,7 @@ function ChangeDataModal () {
   ${Button({ label: 'Узменить', className: 'w-100 mt-8' })}
 </form>`
 
-  return Modal(children, { id: changeDataModalID })
+  return Modal(children, { id: DATA_MODAL_ID })
 }
 
 function ChangePasswordModal () {
@@ -61,5 +61,5 @@ function ChangePasswordModal () {
   ${Button({ label: 'Узменить', className: 'w-100 mt-8' })}
 </form>`
 
-  return Modal(children, { id: changePasswordModalID })
+  return Modal(children, { id: PASSOWRD_MODAL_ID })
 }
