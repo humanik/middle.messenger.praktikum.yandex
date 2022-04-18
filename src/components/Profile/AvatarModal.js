@@ -5,10 +5,13 @@ import Modal from 'components/Modal/Modal'
 import { html } from 'template'
 import './AvatarModal.scss'
 
-const avatarInputID = 'avatar-input'
+const INPUT_ID = 'avatar-input'
 
 function uploadHandler (e) {
   const preview = document.querySelector('.avatar-modal__preview')
+  if (!preview) {
+    return
+  }
 
   if (e.target.files.length > 0) {
     const file = e.target.files[0]
@@ -22,13 +25,13 @@ function uploadHandler (e) {
 
 function submitHandler (e) {
   e.preventDefault()
-  const input = document.getElementById(avatarInputID)
+  const input = document.getElementById(INPUT_ID)
   input.value = ''
   input.dispatchEvent(new Event('change'))
 }
 
 export default function AvatarModal (props = {}) {
-  const id = avatarInputID
+  const id = INPUT_ID
   props.className = ['avatar-modal', props.className]
 
   const children = html`

@@ -1,10 +1,10 @@
 import { html } from 'template'
 import './ButtonGroup.scss'
 
-export default function ButtonGroup ({ children, className, items = [] } = {}) {
-  children = children || items.map(GroupItem)
+export default function ButtonGroup ({ className, items = [] } = {}) {
+  const content = items.map(GroupItem)
 
-  return html`<div ${{ className: ['btn-group', className] }}>${children}</div>`
+  return html`<div ${{ className: ['btn-group', className] }}>${content}</div>`
 }
 
 const GroupItem = ({ icon, text, ...props }) => {
