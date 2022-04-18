@@ -1,9 +1,10 @@
+@use "sass:color";
 @import "styles/config";
 
 .chat-message {
   position: relative;
   flex-shrink: 0;
-  background-color: darken($gray-300, 1%);
+  background-color: color.adjust($gray-300, $lightness: -1%);
   padding: 0.75em 1em;
   border-radius: 1em;
   max-width: 32em;

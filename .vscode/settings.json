@@ -1,7 +1,12 @@
 {
-	"eslint.format.enable": true,
-	"[javascript]": {
-		"editor.formatOnSave": true,
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
-	},
+  "eslint.format.enable": true,
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "stylelint.validate": ["scss"],
+  "[scss]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  }
 }

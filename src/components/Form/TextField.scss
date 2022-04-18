@@ -1,52 +1,52 @@
 @import "styles/config";
 
 .form-field {
-	display: flex;
-	position: relative;
-	margin-bottom: 2rem;
+  display: flex;
+  position: relative;
+  margin-bottom: 2rem;
 }
 
 .form-field__label {
-	position: absolute;
-	top: 50%;
-	left: 0;
-	transform: translateY(-50%);
-	transition: top 300ms;
-	color: $gray-600;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  transition: top 300ms;
+  color: $gray-600;
 }
 
 .form-field__control {
-	border: none;
-	width: 100%;
-	padding: 0.5rem 0;
-	border-bottom: 2px solid $gray-500;
-	transition: border-color 300ms;
+  border: none;
+  width: 100%;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid $gray-500;
+  transition: border-color 300ms;
 
-	&:focus {
-		outline: 0;
-		border-color: $primary;
-	}
+  &:focus {
+    outline: 0;
+    border-color: $primary;
+  }
 
-	&:not(:focus):not(:placeholder-shown) ~ .form-field__label,
-	&:focus ~ .form-field__label {
-		top: 0;
-		font-size: 0.8rem;
-	}
+  &:focus ~ .form-field__label,
+  &:not(:focus):not(:placeholder-shown) ~ .form-field__label {
+    top: 0;
+    font-size: 0.8rem;
+  }
 }
 
 .form-field__feedback {
-	display: none;
-	font-size: .75rem;
+  display: none;
+  font-size: 0.75rem;
 
-	.form-field--valid &,
-	.form-field--invalid & {
-		display: block;
-		position: absolute;
-		left: 0;
-		bottom: -1.25rem;
-	}
+  .form-field--valid &,
+  .form-field--invalid & {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -1.25rem;
+  }
 
-	.form-field--invalid & {
-		color: $danger;
-	}
+  .form-field--invalid & {
+    color: $danger;
+  }
 }

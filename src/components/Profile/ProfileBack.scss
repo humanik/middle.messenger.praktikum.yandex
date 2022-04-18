@@ -1,3 +1,4 @@
+@use "sass:color";
 @import "styles/config";
 
 .profile-back {
@@ -12,17 +13,6 @@
   padding: 0;
   cursor: pointer;
   transition: all 300ms;
-
-  &:hover,
-  &:focus {
-    outline: 0;
-    background-color: darken($gray-300, 4%);
-    border-color: darken($border-color, 4%);
-
-    .profile-back__circle {
-      background-color: darken($primary, 5%);
-    }
-  }
 }
 
 .profile-back__circle {
@@ -34,4 +24,15 @@
   background-color: $primary;
   border-radius: 50%;
   transform: rotate(180deg);
+
+  .profile-back &:hover,
+  .profile-back &:focus {
+    outline: 0;
+    background-color: color.adjust($gray-300, $lightness: -4%);
+    border-color: color.adjust($border-color, $lightness: -4%);
+
+    .profile-back__circle {
+      background-color: color.adjust($primary, $lightness: -5%);
+    }
+  }
 }
