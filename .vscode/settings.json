@@ -4,6 +4,10 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
   "stylelint.validate": ["scss"],
   "[scss]": {
     "editor.formatOnSave": true,

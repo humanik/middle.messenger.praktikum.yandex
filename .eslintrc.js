@@ -4,10 +4,11 @@ module.exports = {
     es2021: true
   },
   extends: [
-    'standard'
+    'standard-with-typescript'
   ],
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
+    project: './tsconfig.json'
   }
 }
