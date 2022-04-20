@@ -5,25 +5,24 @@ const callbacks = new Map()
 const callbackNames = new Map()
 
 Object.defineProperty(window, 'callFunction', {
-  value (name, ...args) {
+  value (name: string, ...args: unknown[]) {
     const fn = callbackNames.get(name)
     fn(...args)
   }
 })
 
-export function html (strings, ...values): string {
+export function html (strings: readonly string[], ...values: any[]): string {
   return strings.reduce((result: string, value: string, i: number) => {
     let replacement = ''
     const dynamic = values[i]
-    const dynamicType = typeof dynamic
 
     if (Array.isArray(dynamic)) {
       replacement = dynamic.join('\n')
-    } else if (dynamicType === 'function') {
+    } else if (typeof dynamic === 'function') {
       replacement = dynamic()
-    } else if (dynamicType === 'object') {
+    } else if (typeof dynamic === 'object' && dynamic !== null) {
       replacement = attributes(dynamic)
-    } else if (dynamicType === 'string') {
+    } else if (typeof dynamic === 'string') {
       replacement = dynamic
     }
 
@@ -34,7 +33,7 @@ export function html (strings, ...values): string {
   }, '')
 }
 
-export const attributes = (input): string => {
+export const attributes = (input: Record<string, any>): string => {
   const parts: string[] = []
 
   if ('class' in input) {
@@ -94,13 +93,14 @@ export const uniqID = (length = 8): string => {
   return result
 }
 
-const getCallbackID = (fn): string => {
+const getCallbackID = (fn: Function): string => {
   if (callbacks.has(fn)) {
     return callbacks.get(fn)
   }
   const name = uniqID()
   callbacks.set(fn, name)
   callbackNames.set(name, fn)
+
   return name
 }
 
@@ -114,11 +114,8 @@ export const escape = (string: string): string => {
   }
 
   const reUnescapedHtml = /[&<>"']/g
-  const reHasUnescapedHtml = RegExp(reUnescapedHtml.source)
 
-  return (string.length > 0 && reHasUnescapedHtml.test(string))
-    ? string.replace(reUnescapedHtml, (chr) => htmlEscapes[chr])
-    : string
+  return string.replace(reUnescapedHtml, (chr: keyof typeof htmlEscapes) => htmlEscapes[chr])
 }
 
 export function createNode (html: string): ChildNode | null {

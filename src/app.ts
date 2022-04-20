@@ -6,12 +6,12 @@ import ProfilePage from 'pages/profile'
 import RegistrationPage from 'pages/registration'
 import ServerErrorPage from 'pages/server-error'
 
-const historyOverride = function (type: string): () => unknown {
-  const origFunction = history[type]
+const historyOverride = function (name: keyof History): () => unknown {
+  const origFunction = history[name]
 
   return function (...args) {
     const result = origFunction.call(this, ...args)
-    window.dispatchEvent(new Event(type))
+    window.dispatchEvent(new Event(name))
 
     return result
   }

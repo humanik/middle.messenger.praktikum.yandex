@@ -43,7 +43,7 @@ export default function Profile (): string {
 function ChangeDataModal (): string {
   const children = html`
 <div class="modal__title">Узменить данные</div>
-<form class="modal__body" ${{ onsubmit: (e) => { e.preventDefault() } }}>
+<form class="modal__body" ${{ onsubmit: (e: SubmitEvent) => { e.preventDefault() } }}>
   ${data.map(TextField)}
   ${Button({ label: 'Узменить', className: 'w-100 mt-8' })}
 </form>`
@@ -54,7 +54,7 @@ function ChangeDataModal (): string {
 function ChangePasswordModal (): string {
   const children = html`
 <div class="modal__title">Узменить пароль</div>
-<form class="modal__body" ${{ onsubmit: (e) => { e.preventDefault() } }}>
+<form class="modal__body" ${{ onsubmit: (e: SubmitEvent) => { e.preventDefault() } }}>
   ${TextField({ label: 'Старый пароль', name: 'oldPassword', type: 'password' })}
   ${TextField({ label: 'Новый пароль', name: 'newPassword', type: 'password' })}
   ${TextField({ label: 'Повторите новый пароль', name: 'newPasswordConfirm', type: 'password' })}
