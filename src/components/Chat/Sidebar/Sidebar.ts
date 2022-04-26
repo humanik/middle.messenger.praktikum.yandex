@@ -1,7 +1,8 @@
-import { html } from 'template'
-import Channel from './Channel'
+import { Component } from 'utils/template/Component'
+import { html } from 'utils/template/html'
+import { ChatChannel } from './ChatChannel'
 import './Sidebar.scss'
-import Header from './SidebarHeader'
+import { SidebarHeader } from './SidebarHeader'
 
 const channels = [
   {
@@ -24,10 +25,12 @@ const channels = [
   }
 ]
 
-export default function Sidebar (): string {
-  return html`
+export class Sidebar extends Component {
+  public render (): VirtualElement {
+    return html`
 <aside class="chat-sidebar">
-  ${Header()}
-  ${channels.map(Channel)}
+  ${SidebarHeader}
+  ${channels.map(ChatChannel)}
 </aside>`
+  }
 }

@@ -1,28 +1,13 @@
-import { html } from 'template'
+import { html } from 'utils/template/html'
 import './ButtonGroup.scss'
+import { ButtonGroupItem, GroupItemProps } from './ButtonGroupItem'
 
-interface ButtonGroupProps {
+interface ButtonGroupProps extends WithClass {
   items: GroupItemProps[]
-  className?: string
 }
 
-interface GroupItemProps {
-  icon?: ({ className }: { className: string }) => string
-  text?: string
-}
+export function ButtonGroup (props: ButtonGroupProps): VirtualElement {
+  const { className, items = [] } = props
 
-export default function ButtonGroup ({ className, items = [] }: ButtonGroupProps): string {
-  const content = items.map(GroupItem)
-
-  return html`<div ${{ className: ['btn-group', className] }}>${content}</div>`
-}
-
-const GroupItem = ({ icon, text, ...props }: GroupItemProps): string => {
-  const attr = { className: 'btn-group-item', ...props }
-
-  return html`
-<button ${attr}>
-  ${icon?.({ className: 'btn-group-item__icon' })}
-  <span>${text}</span>
-</button>`
+  return html`<div ${{ className: ['btn-group', className] }}>${items.map(ButtonGroupItem)}</div>`
 }

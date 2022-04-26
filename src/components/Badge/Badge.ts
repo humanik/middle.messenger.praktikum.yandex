@@ -1,13 +1,13 @@
-import { html } from 'template'
+import { html } from 'utils/template/html'
 import './Badge.scss'
 
-interface BadgeProps {
-  children: string
+interface BadgeProps extends WithChildren, WithClass {
   variant?: string
-  className?: string
 }
 
-export default function Badge ({ className, children, variant = 'primary' }: BadgeProps): string {
+export function Badge (props: BadgeProps): VirtualElement {
+  const { className, children, variant = 'primary' } = props
+
   const attr = {
     className: ['badge', className, {
       'badge-primary': variant === 'primary'

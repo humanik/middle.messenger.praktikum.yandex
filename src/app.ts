@@ -1,68 +1,43 @@
-import ChatPage from 'pages/chat'
-import HomePage from 'pages/home'
-import LoginPage from 'pages/login'
-import NotFoundPage from 'pages/not-found'
-import ProfilePage from 'pages/profile'
-import RegistrationPage from 'pages/registration'
-import ServerErrorPage from 'pages/server-error'
-
-const historyOverride = function (name: keyof History): () => unknown {
-  const origFunction = history[name]
-
-  return function (...args) {
-    const result = origFunction.call(this, ...args)
-    window.dispatchEvent(new Event(name))
-
-    return result
-  }
-}
-
-history.pushState = historyOverride('pushState')
-history.replaceState = historyOverride('replaceState')
+import { ChatPage } from 'pages/chat'
+import { HomePage } from 'pages/home'
+import { LoginPage } from 'pages/login'
+import { NotFoundPage } from 'pages/not-found'
+import { ProfilePage } from 'pages/profile'
+import { RegistrationPage } from 'pages/registration'
+import { ServerErrorPage } from 'pages/server-error'
+import { renderTo } from 'utils/template/vdom/renderTo'
 
 function loadRouteCountent (): void {
-  let page = NotFoundPage
-  const root = document.querySelector('#root')
-  if (root == null) {
-    return
-  }
+  let Page = NotFoundPage
 
   switch (location.pathname) {
     case '/':
-      page = HomePage
+      Page = HomePage
       break
     case '/chat':
-      page = ChatPage
+      Page = ChatPage
       break
     case '/profile':
-      page = ProfilePage
+      Page = ProfilePage
       break
     case '/login':
-      page = LoginPage
+      Page = LoginPage
       break
     case '/registration':
-      page = RegistrationPage
+      Page = RegistrationPage
       break
     case '/404':
-      page = NotFoundPage
+      Page = NotFoundPage
       break
     case '/500':
-      page = ServerErrorPage
+      Page = ServerErrorPage
       break
   }
 
-  root.innerHTML = page()
+  renderTo('#root', new Page())
 }
 
 document.addEventListener('DOMContentLoaded', loadRouteCountent)
 window.addEventListener('popstate', loadRouteCountent)
 window.addEventListener('pushState', loadRouteCountent)
 window.addEventListener('replaceState', loadRouteCountent)
-
-document.addEventListener('click', (e) => {
-  if (e.target instanceof HTMLAnchorElement) {
-    e.preventDefault()
-    const href = e.target.getAttribute('href')
-    history.pushState({ page: href }, '', href)
-  }
-})

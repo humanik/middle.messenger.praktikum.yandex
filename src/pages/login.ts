@@ -1,6 +1,9 @@
-import LoginForm from 'components/Form/LoginForm'
-import { html } from 'template'
+import { LoginForm } from 'components/Form/LoginForm'
+import { Component } from 'utils/template/Component'
+import { html } from 'utils/template/html'
 
-export default function LoginPage (): string {
-  return html`<div class="centered-container">${LoginForm()}</div>`
+export class LoginPage extends Component {
+  public render (): VirtualElement {
+    return html`<div class="centered-container">${LoginForm}</div>`
+  }
 }

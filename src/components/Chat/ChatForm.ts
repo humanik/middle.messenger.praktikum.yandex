@@ -1,13 +1,14 @@
-import Button from 'components/Button/Button'
-import ButtonGroup from 'components/Button/ButtonGroup'
-import IconButton from 'components/Button/IconButton'
+import { Button } from 'components/Button/Button'
+import { ButtonGroup } from 'components/Button/ButtonGroup'
+import { IconButton } from 'components/Button/IconButton'
 import { ArrowIcon, AttachmentIcon, FileIcon, LocationIcon, MediaIcon } from 'components/Icon'
-import Popover, { togglePopover } from 'components/Popover/Popover'
-import { html } from 'template'
+import { Popover, togglePopover } from 'components/Popover/Popover'
+import { Component } from 'utils/template/Component'
+import { html } from 'utils/template/html'
 import './ChatFooter.scss'
 import './ChatForm.scss'
-import ChatInput from './ChatInput'
-import ChatMessage from './ChatMessage'
+import { ChatInput } from './ChatInput'
+import { ChatMessage } from './ChatMessage'
 
 const submitHandler = (e: SubmitEvent): void => {
   e.preventDefault()
@@ -26,37 +27,32 @@ const submitHandler = (e: SubmitEvent): void => {
   input.value = ''
 }
 
-export default function ChatForm (): string {
-  return html`
-<form ${{ className: 'chat-form', onsubmit: submitHandler }}>
-  ${Popover({
-    position: 'top-left',
-    trigger: IconButton({ icon: AttachmentIcon(), className: 'p-1', size: 'big', onclick: togglePopover }),
-    content: AttachmentMenu()
-  })}
-  ${ChatInput({ id: 'chat-input', placeholder: 'Сообщение' })}
-  ${SubmitButton}
-</form>`
-}
+export class ChatForm extends Component {
+  public render (): VirtualElement {
+    const menuItems = [
+      {
+        icon: MediaIcon({ width: 22, className: 'btn-group-item__icon' }),
+        text: 'Фото и видео'
+      },
+      {
+        icon: FileIcon({ width: 22, className: 'btn-group-item__icon' }),
+        text: 'Файл'
+      },
+      {
+        icon: LocationIcon({ width: 22, className: 'btn-group-item__icon' }),
+        text: 'Локация'
+      }
+    ]
 
-const SubmitButton = (): string =>
-  Button({ label: ArrowIcon(), className: 'chat-form__submit', type: 'submit' })
-
-const AttachmentMenu = (): string => {
-  const items = [
-    {
-      icon: MediaIcon,
-      text: 'Фото и видео'
-    },
-    {
-      icon: FileIcon,
-      text: 'Файл'
-    },
-    {
-      icon: LocationIcon,
-      text: 'Локация'
-    }
-  ]
-
-  return ButtonGroup({ items })
+    return html`
+    <form ${{ className: 'chat-form', onsubmit: submitHandler }}>
+      ${Popover({
+        position: 'top-left',
+        trigger: IconButton({ icon: AttachmentIcon(), className: 'p-1', size: 'big', onClick: togglePopover }),
+        content: ButtonGroup({ items: menuItems })
+      })}
+      ${ChatInput({ id: 'chat-input', placeholder: 'Сообщение' })}
+      ${Button({ children: ArrowIcon(), className: 'chat-form__submit', type: 'submit' })}
+    </form>`
+  }
 }

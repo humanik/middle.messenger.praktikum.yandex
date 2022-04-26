@@ -1,6 +1,9 @@
-import RegistrationForm from 'components/Form/RegistrationForm'
-import { html } from 'template'
+import { RegistrationForm } from 'components/Form/RegistrationForm'
+import { Component } from 'utils/template/Component'
+import { html } from 'utils/template/html'
 
-export default function RegistrationPage (): string {
-  return html`<div class="centered-container">${RegistrationForm()}</div>`
+export class RegistrationPage extends Component {
+  public render (): VirtualElement {
+    return html`<div class="centered-container">${RegistrationForm}</div>`
+  }
 }

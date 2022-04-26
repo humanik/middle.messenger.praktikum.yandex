@@ -1,5 +1,9 @@
-import Chat from 'components/Chat/Chat'
+import { Chat } from 'components/Chat/Chat'
+import { Component } from 'utils/template/Component'
+import { html } from 'utils/template/html'
 
-export default function ChatPage (): string {
-  return Chat()
+export class ChatPage extends Component {
+  public render (): VirtualElement {
+    return html`${Chat}`
+  }
 }

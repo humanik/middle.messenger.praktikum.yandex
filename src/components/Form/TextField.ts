@@ -1,18 +1,20 @@
-import { html, uniqID } from 'template'
+import { isFalsy } from 'utils/helpers'
+import { html } from 'utils/template/html'
 import './TextField.scss'
 
-interface TextFieldProps {
+interface TextFieldProps extends WithClass {
   id?: string
   type?: string
   valid?: boolean
   invalid?: boolean
   name: string
   label: string
-  className?: string
   feedback?: string
 }
 
-export default function TextField ({ id = uniqID(), type = 'text', valid, invalid, label, className, feedback = '', ...props }: TextFieldProps): string {
+export function TextField (props: TextFieldProps): VirtualElement {
+  const { id, type = 'text', valid, invalid, label, className, feedback, ...other } = props
+
   const mainClasses = ['form-field', className, {
     'form-field--valid': valid,
     'form-field--invalid': invalid
@@ -23,17 +25,13 @@ export default function TextField ({ id = uniqID(), type = 'text', valid, invali
     type,
     className: 'form-field__control',
     placeholder: ' ',
-    ...props
+    ...other
   }
 
   return html`
 <div ${{ className: mainClasses }}>
   <input ${attr}/>
-  ${feedback.length > 0 && Feedback(feedback)}
+  ${!isFalsy(feedback) && `<span class="form-field__feedback">${feedback}</span>`}
   <label for="${attr.id}" class="form-field__label">${label}</label>
 </div>`
-}
-
-function Feedback (text: string): string {
-  return html`<span class="form-field__feedback">${text}</span>`
 }

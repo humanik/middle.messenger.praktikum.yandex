@@ -1,15 +1,15 @@
-import Avatar from 'components/Avatar/Avatar'
-import { html } from 'template'
+import { Avatar } from 'components/Avatar/Avatar'
+import { html } from 'utils/template/html'
 import './ProfileAvatar.scss'
 
 interface ProfileAvatarProps {
-  onclick: () => void
+  onClick?: EventListener
 }
 
-export default function ProfileAvatar (props: ProfileAvatarProps): string {
+export function ProfileAvatar ({ onClick }: ProfileAvatarProps): VirtualElement {
   return html`
 <div class="profile-avatar">
   ${Avatar({ id: 'profile-avatar', size: 'big' })}
-  <button class="profile-avatar__change" type="button" ${{ onclick: props.onclick }}>Поменять аватар</button>
+  <button class="profile-avatar__change" type="button" ${{ onClick }}>Поменять аватар</button>
 </div>`
 }

@@ -1,18 +1,17 @@
-import { html } from 'template'
+import { html } from 'utils/template/html'
 import './Link.scss'
 
-interface LinkProps {
+interface LinkProps extends WithClass, WithChildren {
   tag?: string
-  label: string
   href?: string
   for?: string
   variant?: string
   size?: string
-  className?: string
-  onclick?: (e: MouseEvent) => void
+  onClick?: (e: MouseEvent) => void
 }
 
-const Link = ({ label, tag = 'a', variant = 'primary', size, className, ...props }: LinkProps): string => {
+export function Link (props: LinkProps): VirtualElement {
+  const { children, tag = 'a', variant = 'primary', size, className, ...other } = props
   const attr = {
     className: [
       'link',
@@ -23,10 +22,8 @@ const Link = ({ label, tag = 'a', variant = 'primary', size, className, ...props
         'link-xs': size === 'small'
       }
     ],
-    ...props
+    ...other
   }
 
-  return html`<${tag} ${attr}>${label}</${tag}>`
+  return html`<${tag} ${attr}>${children}</${tag}>`
 }
-
-export default Link

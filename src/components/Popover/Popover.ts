@@ -1,35 +1,41 @@
-import { html } from 'template'
+import { Component } from 'utils/template/Component'
+import { html } from 'utils/template/html'
+import { ComponentTuple } from 'utils/template/Template'
 import './Popover.scss'
 
 document.addEventListener('keyup', function (e) {
   if (e.key === 'Escape') {
-    document.querySelectorAll('.popover').forEach((popover) => {
-      if (popover.hasAttribute('open')) {
-        popover.removeAttribute('open')
-      }
+    document.querySelectorAll('.popover[open]').forEach((popover) => {
+      popover.removeAttribute('open')
     })
   }
 })
 
-interface PopoverProps {
+interface PopoverProps extends WithClass {
+  content: VirtualElement
+  trigger: VirtualElement
   position?: string
-  className?: string
-  content: string
-  trigger: string
 }
 
-export default function Popover ({ position = 'bottom-right', className, content, trigger, ...props }: PopoverProps): string {
-  const attr = {
-    className: ['popover', className],
-    ...props,
-    'data-position': position
-  }
+export class PopoverComponent extends Component<PopoverProps> {
+  public render (): VirtualElement {
+    const { position = 'bottom-right', className, content, trigger, ...other } = this.props
+    const attr = {
+      className: ['popover', className],
+      'data-position': position,
+      ...other
+    }
 
-  return html`
+    return html`
 <div ${attr}>
   ${trigger}
   <div class="popover__content">${content}</div>
 </div>`
+  }
+}
+
+export function Popover (props: PopoverProps): ComponentTuple {
+  return [PopoverComponent, props]
 }
 
 export const togglePopover = (e: Event): void => {

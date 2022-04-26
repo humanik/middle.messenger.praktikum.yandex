@@ -1,20 +1,21 @@
-import { html } from 'template'
+import { html } from 'utils/template/html'
 import './Button.scss'
 
-interface IconButtonProps {
-  icon: string
+interface IconButtonProps extends WithClass {
+  icon: VirtualElement
+  onClick: (e: MouseEvent) => void
   size?: string
   type?: string
-  className?: string
-  onclick: (e: MouseEvent) => void
 }
 
-export default function IconButton ({ icon, size, type, className, ...props }: IconButtonProps): string {
+export function IconButton (props: IconButtonProps): VirtualElement {
+  const { icon, size, type, className, ...other } = props
+
   const attr = {
     className: ['btn btn-icon', className, {
       'btn-icon-xl': size === 'big'
     }],
-    ...props
+    ...other
   }
 
   return html`<button ${attr}>${icon}</button>`

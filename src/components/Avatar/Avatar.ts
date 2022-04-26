@@ -1,23 +1,25 @@
 import emptyAvatar from 'images/empty-avatar.svg'
-import { html } from 'template'
+import { html } from 'utils/template/html'
 import './Avatar.scss'
 
-interface AvatarProps {
+interface Props extends WithClass {
   id?: string
   size?: string
-  className?: string
 }
 
-const Avatar = ({ size, className, ...props }: AvatarProps = {}): string => {
+export function Avatar (props: Props = {}): VirtualElement {
+  const { size, className, ...other } = props
+
   const attr = {
     className: ['avatar', className, {
       'avatar-xl': size === 'big',
       'avatar-sm': size === 'small'
     }],
-    ...props
+    ...other
   }
 
-  return html`<div ${attr}><img ${{ src: emptyAvatar, className: 'avatar__img' }}/></div>`
+  return html`
+<div ${attr}>
+  <img ${{ src: emptyAvatar, className: 'avatar__img' }}/>
+</div>`
 }
-
-export default Avatar

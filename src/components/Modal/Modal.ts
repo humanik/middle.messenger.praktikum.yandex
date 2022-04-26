@@ -1,27 +1,35 @@
-import { html, uniqID } from 'template'
+import { html } from 'utils/template/html'
 import './Modal.scss'
 
-interface ModalProps {
+interface ModalProps extends WithClass, WithChildren {
   id: string
-  children: string
   oncancel?: (e: Event) => void
-  className?: string
 }
 
-export default function Modal (
-  { id = uniqID(), oncancel = cancelHandler, children, className, ...props }: ModalProps
-): string {
-  const attr = {
-    id,
-    className: ['modal', className],
-    oncancel,
-    ...props
+document.addEventListener('click', function (e: MouseEvent) {
+  if (e.target instanceof HTMLElement && e.target.tagName === 'DIALOG') {
+    closeDialog(e.target as HTMLDialogElement)
+  }
+})
+
+export function Modal (props: ModalProps): VirtualElement {
+  const { id, oncancel = cancelHandler, children, className, ...other } = props
+  const attr = { id, className: ['modal', className], oncancel, ...other }
+
+  return html`<dialog ${attr}>${children}</dialog>`
+}
+
+function cancelHandler (e: Event): void {
+  e.preventDefault()
+  if (!(document.activeElement instanceof HTMLElement)) {
+    return
   }
 
-  return html`
-<dialog ${attr}>
-  <div class="modal__content">${children}</div>
-</dialog>`
+  if (['BUTTON', 'INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+    document.activeElement.blur()
+  } else {
+    closeDialog(e.target as HTMLDialogElement)
+  }
 }
 
 export function showModal (id: string): () => void {
@@ -49,23 +57,4 @@ const closeDialog = (dialog: HTMLDialogElement): void => {
       dialog.removeAttribute('closing')
     }
   }, { once: true })
-}
-
-document.addEventListener('click', function (e) {
-  if (e.target !== null) {
-    closeDialog(e.target as HTMLDialogElement)
-  }
-})
-
-function cancelHandler (e: Event): void {
-  e.preventDefault()
-  if (!(document.activeElement instanceof HTMLElement)) {
-    return
-  }
-
-  if (['BUTTON', 'INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
-    document.activeElement.blur()
-  } else {
-    closeDialog(e.target as HTMLDialogElement)
-  }
 }
