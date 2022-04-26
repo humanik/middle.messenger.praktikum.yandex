@@ -1,5 +1,6 @@
 import { isFalsy } from 'utils/helpers'
 import { EventBus } from './EventBus'
+import { mergeDeep } from './helpers'
 import { createElement } from './vdom/createElement'
 import { diffNodes } from './vdom/diffNodes'
 
@@ -66,7 +67,7 @@ export abstract class Component<P = {}, S = {}> {
   }
 
   protected setState (nextState: Partial<S>): void {
-    Object.assign(this.state, nextState)
+    mergeDeep(this.state, nextState)
     this.dispatchUpdate()
   }
 
