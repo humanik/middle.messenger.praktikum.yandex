@@ -1,5 +1,5 @@
 ## App
-[Sprint 1 pull request](https://github.com/humanik/middle.messenger.praktikum.yandex/pull/1)
+[Sprint 2 pull request](https://github.com/humanik/middle.messenger.praktikum.yandex/pull/2)
 
 Yandex Practicum chat app without third party libraries.
 
