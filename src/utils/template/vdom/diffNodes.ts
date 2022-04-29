@@ -4,7 +4,7 @@ import { diffAttributes } from './diffAttributes'
 import { diffChildren } from './diffChildren'
 import { patchComponent } from './patchComponent'
 
-export function diffNodes (oldNode: VirtualNode, newNode: VirtualNode | undefined): NodePatch {
+export function diffNodes (oldNode: VirtualNode, newNode?: VirtualNode): NodePatch {
   if (newNode === undefined) {
     return (node: Element) => {
       node.remove()

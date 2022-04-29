@@ -2,7 +2,7 @@ import { html } from 'utils/template/html'
 import './Badge.scss'
 
 interface BadgeProps extends WithChildren, WithClass {
-  variant?: string
+  variant?: 'primary'
 }
 
 export function Badge (props: BadgeProps): VirtualElement {

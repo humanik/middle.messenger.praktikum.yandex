@@ -2,9 +2,9 @@ import { html } from 'utils/template/html'
 import './Button.scss'
 
 interface ButtonProps extends WithClass, WithChildren {
-  size?: string
+  size?: 'small'
   type?: string
-  variant?: string
+  variant?: 'primary'
 }
 
 export function Button (props: ButtonProps): VirtualElement {

@@ -4,7 +4,7 @@ import './Avatar.scss'
 
 interface Props extends WithClass {
   id?: string
-  size?: string
+  size?: 'big' | 'small'
 }
 
 export function Avatar (props: Props = {}): VirtualElement {
