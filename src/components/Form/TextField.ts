@@ -3,7 +3,7 @@ import { html } from 'utils/template/html'
 import './TextField.scss'
 
 interface TextFieldProps extends WithClass {
-  id?: string
+  id: string
   type?: string
   valid?: boolean
   value?: string
@@ -11,7 +11,9 @@ interface TextFieldProps extends WithClass {
   name: string
   label: string
   feedback?: string
+  onBlur?: EventListener
   onInput?: EventListener
+  onFocus?: EventListener
 }
 
 export function TextField (props: TextFieldProps): VirtualElement {

@@ -2,6 +2,25 @@ declare module '*.svg' {
   export default String
 }
 
+type StringKey<T> = keyof T & string
+
+type StringRecord = Record<string, string>
+
+type UnknownRecord = Record<string, unknown>
+
+type ComponentTuple = [new (v?: unknown) => Component, Record<string, any>]
+
+interface Component {
+  getElement: () => Element
+}
+
+type RecursivePartial<T> = {
+  [P in keyof T]?:
+  T[P] extends Array<infer U> ? Array<RecursivePartial<U>> :
+    T[P] extends object ? RecursivePartial<T[P]> :
+      T[P];
+}
+
 interface HTMLDialogElement extends HTMLElement {
   open: boolean
   returnValue: string
@@ -26,12 +45,8 @@ interface VirtualElement {
   tagName: string
   attributes: Record<string, string | EventListener>
   children: VirtualNode[]
-  component?: [new() => Component, Record<string, unknown>]
+  component?: new(props: unknown) => Component
   instance?: Component
-}
-
-interface Component {
-  getElement: () => Element
 }
 
 type PossibleClass = string | boolean | undefined | null | Record<string, boolean | null | undefined> | PossibleClass[]

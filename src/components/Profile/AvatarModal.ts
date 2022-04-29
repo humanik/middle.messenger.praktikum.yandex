@@ -4,7 +4,6 @@ import { Link } from 'components/Link/Link'
 import { Modal } from 'components/Modal/Modal'
 import { Component } from 'utils/template/Component'
 import { html } from 'utils/template/html'
-import { ComponentTuple } from 'utils/template/Template'
 import './AvatarModal.scss'
 
 const INPUT_ID = 'avatar-input'

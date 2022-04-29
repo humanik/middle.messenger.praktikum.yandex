@@ -1,11 +1,9 @@
 import { isFalsy } from 'utils/helpers'
-import { Component } from './Component'
+import { Component as RealComponent } from './Component'
 import { isComponentTuple, isComponentType, isVirtualElement } from './helpers'
 import { createAttributes } from './html'
 import { apply } from './vdom/apply'
 import { parseHtml } from './vdom/parseHtml'
-
-export type ComponentTuple = [new () => Component, unknown]
 
 export type TemplatePart =
   | string
@@ -13,7 +11,7 @@ export type TemplatePart =
   | null
   | undefined
   | boolean
-  | (new() => Component)
+  | typeof RealComponent.constructor
   | ComponentTuple
   | VirtualElement
   | Array<string | number | ComponentTuple | VirtualElement>

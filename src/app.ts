@@ -34,7 +34,7 @@ function loadRouteCountent (): void {
       break
   }
 
-  renderTo('#root', new Page())
+  renderTo('#root', new Page({}))
 }
 
 document.addEventListener('DOMContentLoaded', loadRouteCountent)

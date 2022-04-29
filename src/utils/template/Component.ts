@@ -1,6 +1,5 @@
-import { isFalsy } from 'utils/helpers'
+import { isFalsy, mergeDeep } from 'utils/helpers'
 import { EventBus } from './EventBus'
-import { mergeDeep } from './helpers'
 import { createElement } from './vdom/createElement'
 import { diffNodes } from './vdom/diffNodes'
 
@@ -10,15 +9,14 @@ enum Events {
   detach = 'detach',
 }
 
-export abstract class Component<P = {}, S = {}> {
-  protected props: Readonly<P>
-  protected state: Readonly<S>
+export abstract class Component<P = {}, S extends UnknownRecord = {}> {
+  protected props: P
+  protected state: S
   private readonly eventBus: EventBus
   private element: Element
   private $element: VirtualElement
 
-  constructor (props: P = {}) {
-    this.state = {}
+  constructor (props: P) {
     this.props = props
     this.eventBus = new EventBus()
     this.registerEvents()
@@ -44,10 +42,6 @@ export abstract class Component<P = {}, S = {}> {
     return this.element
   }
 
-  public getState (): S {
-    return this.state
-  }
-
   private onUpdate (): void {
     if (isFalsy(this.element)) {
       this.$element = this.render()
@@ -66,7 +60,7 @@ export abstract class Component<P = {}, S = {}> {
     this.dispatchUpdate()
   }
 
-  protected setState (nextState: Partial<S>): void {
+  protected setState (nextState: RecursivePartial<S>): void {
     mergeDeep(this.state, nextState)
     this.dispatchUpdate()
   }

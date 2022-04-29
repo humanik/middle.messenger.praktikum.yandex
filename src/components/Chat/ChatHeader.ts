@@ -37,7 +37,7 @@ ${Modal({
   <div class="modal__content">
     <div class="modal__title">Добавить пользователя</div>
     <div class="modal__body">
-      ${TextField({ label: 'Логин', name: 'login' })}
+      ${TextField({ id: 'input-add-user', label: 'Логин', name: 'login' })}
       ${Button({ children: 'Добавить', className: 'w-100 mt-8' })}
     </div>
   </div>`
@@ -52,7 +52,7 @@ ${Modal({
   <div class="modal__content">
     <div class="modal__title">Удалить пользователя</div>
     <div class="modal__body">
-      ${TextField({ label: 'Логин', name: 'login' })}
+      ${TextField({ id: 'input-remove-user', label: 'Логин', name: 'login' })}
       ${Button({ children: 'Удалить', className: 'w-100 mt-8' })}
     </div>
   </div>`

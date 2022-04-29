@@ -2,7 +2,6 @@ import { Avatar } from 'components/Avatar/Avatar'
 import { Badge } from 'components/Badge/Badge'
 import { Component } from 'utils/template/Component'
 import { html } from 'utils/template/html'
-import { ComponentTuple } from 'utils/template/Template'
 import './Channel.scss'
 
 interface ChatChannelProps {

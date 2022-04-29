@@ -14,12 +14,12 @@ const DATA_MODAL_ID = 'modal-change-data'
 const PASSOWRD_MODAL_ID = 'modal-change-password'
 
 const data = [
-  { label: 'Почта', name: 'email', value: 'pochta@yandex.ru' },
-  { label: 'Логин', name: 'login', value: 'ivanivanov' },
-  { label: 'Имя', name: 'first_name', value: 'Иван' },
-  { label: 'Фамилия', name: 'second_name', value: 'Иванов' },
-  { label: 'Имя в чате', name: 'display_name', value: 'Иван' },
-  { label: 'Телефон', name: 'phone', value: '+7 (909) 967 30 30' }
+  { id: 'input-email', label: 'Почта', name: 'email', value: 'pochta@yandex.ru' },
+  { id: 'input-login', label: 'Логин', name: 'login', value: 'ivanivanov' },
+  { id: 'input-firstname', label: 'Имя', name: 'first_name', value: 'Иван' },
+  { id: 'input-secondname', label: 'Фамилия', name: 'second_name', value: 'Иванов' },
+  { id: 'input-nickname', label: 'Имя в чате', name: 'display_name', value: 'Иван' },
+  { id: 'input-phone', label: 'Телефон', name: 'phone', value: '+7 (909) 967 30 30' }
 ]
 
 const actions = [
@@ -67,9 +67,9 @@ ${Modal({
   <div class="modal__content">
     <div class="modal__title">Изменить пароль</div>
     <form class="modal__body" ${{ onsubmit: (e: SubmitEvent) => { e.preventDefault() } }}>
-      ${TextField({ label: 'Старый пароль', name: 'oldPassword', type: 'password' })}
-      ${TextField({ label: 'Новый пароль', name: 'newPassword', type: 'password' })}
-      ${TextField({ label: 'Повторите новый пароль', name: 'newPasswordConfirm', type: 'password' })}
+      ${TextField({ id: 'input-old-password', label: 'Старый пароль', name: 'oldPassword', type: 'password' })}
+      ${TextField({ id: 'input-new-password', label: 'Новый пароль', name: 'newPassword', type: 'password' })}
+      ${TextField({ id: 'input-new-password-confirm', label: 'Повторите новый пароль', name: 'newPasswordConfirm', type: 'password' })}
       ${Button({ children: 'Изменить', className: 'w-100 mt-8' })}
     </form>
   </div>`

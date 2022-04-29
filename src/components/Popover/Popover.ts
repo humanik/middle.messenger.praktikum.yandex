@@ -1,6 +1,5 @@
 import { Component } from 'utils/template/Component'
 import { html } from 'utils/template/html'
-import { ComponentTuple } from 'utils/template/Template'
 import './Popover.scss'
 
 document.addEventListener('keyup', function (e) {

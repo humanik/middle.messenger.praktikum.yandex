@@ -7,7 +7,7 @@ export function createElement ($element: VirtualNode, isSvg: boolean = false): N
 
   if ($element.tagName === 'Component' && !isFalsy($element.component)) {
     const CurrentComponent = $element.component
-    const instance = $element.instance ?? new CurrentComponent($element.attributes) as Component
+    const instance = $element.instance ?? new CurrentComponent($element.attributes)
     $element.instance = instance
     return instance.getElement()
   }

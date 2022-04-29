@@ -32,6 +32,10 @@
     top: 0;
     font-size: 0.8rem;
   }
+
+  .form-field--invalid &:not(:focus) {
+    border-color: $danger;
+  }
 }
 
 .form-field__feedback {
