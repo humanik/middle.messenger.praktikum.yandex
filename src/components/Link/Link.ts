@@ -5,8 +5,8 @@ interface LinkProps extends WithClass, WithChildren {
   tag?: string
   href?: string
   for?: string
-  variant?: string
-  size?: string
+  variant?: 'primary' | 'danger'
+  size?: 'small'
   onClick?: (e: MouseEvent) => void
 }
 

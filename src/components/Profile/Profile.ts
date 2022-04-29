@@ -15,9 +15,9 @@ export const DATA_MODAL_ID = 'modal-change-data'
 export const PASSOWRD_MODAL_ID = 'modal-change-password'
 
 const actions = [
-  { label: Link({ children: 'Change data', tag: 'button', onClick: showModal(DATA_MODAL_ID) }) },
-  { label: Link({ children: 'Change password', tag: 'button', onClick: showModal(PASSOWRD_MODAL_ID) }) },
-  { label: Link({ children: 'Logout', variant: 'danger', tag: 'button' }) }
+  { label: Link({ children: 'Изменить данные', tag: 'button', onClick: showModal(DATA_MODAL_ID) }) },
+  { label: Link({ children: 'Изменить пароль', tag: 'button', onClick: showModal(PASSOWRD_MODAL_ID) }) },
+  { label: Link({ children: 'Выйти', variant: 'danger', tag: 'button' }) }
 ]
 
 export class Profile extends Component {

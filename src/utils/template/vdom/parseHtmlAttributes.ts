@@ -1,8 +1,8 @@
-export function parseHtmlAttributes (attributes: string | undefined): Record<string, string> {
+export function parseHtmlAttributes (attributes?: string): StringRecord {
   if (attributes === undefined) {
     return {}
   }
-  const result: Record<string, string> = {}
+  const result: StringRecord = {}
   const pattern = /(?<name>\w[\w\d\-_]*)="(?<value>.*?)"/g
 
   for (const match of attributes.matchAll(pattern)) {

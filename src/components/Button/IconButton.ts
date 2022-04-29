@@ -4,7 +4,7 @@ import './Button.scss'
 interface IconButtonProps extends WithClass {
   icon: VirtualElement
   onClick: (e: MouseEvent) => void
-  size?: string
+  size?: 'big'
   type?: string
 }
 
