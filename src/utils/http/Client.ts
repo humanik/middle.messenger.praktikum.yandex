@@ -50,7 +50,7 @@ export class Client {
 
   public async request (config: RequestConfig): Promise<XMLHttpRequest> {
     return await new Promise((resolve, reject) => {
-      const { method, headers = {}, timeout = 5000 }: RequestConfig = Object.assign(this.config, config)
+      const { method, headers = {}, timeout = 5000 } = Object.assign(this.config, config)
       const request = new XMLHttpRequest()
 
       request.open(method, this.prepareUrl(config))

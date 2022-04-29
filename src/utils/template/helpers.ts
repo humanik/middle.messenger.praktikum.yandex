@@ -4,10 +4,14 @@ export function isVirtualElement (candidate: any): candidate is VirtualElement {
   return (
     candidate !== null &&
     typeof candidate === 'object' &&
-    typeof candidate?.tagName === 'string' &&
-    typeof candidate?.attributes === 'object' &&
+    typeof candidate.tagName === 'string' &&
+    typeof candidate.attributes === 'object' &&
     Array.isArray(candidate?.children)
   )
+}
+
+export function isVirtualComponent (candidate: any): candidate is VirtualComponent {
+  return isVirtualElement(candidate) && candidate.component !== undefined
 }
 
 export function isComponentTuple (candidate: unknown): candidate is ComponentTuple {

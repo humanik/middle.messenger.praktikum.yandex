@@ -1,6 +1,8 @@
+import { isVirtualComponent } from '../helpers'
 import { createElement } from './createElement'
 import { diffAttributes } from './diffAttributes'
 import { diffChildren } from './diffChildren'
+import { patchComponent } from './patchComponent'
 
 export function diffNodes (oldNode: VirtualNode, newNode: VirtualNode | undefined): NodePatch {
   if (newNode === undefined) {
@@ -22,11 +24,18 @@ export function diffNodes (oldNode: VirtualNode, newNode: VirtualNode | undefine
     }
   }
 
-  if (oldNode?.tagName !== newNode?.tagName) {
+  if ((oldNode?.tagName !== newNode?.tagName) || (oldNode.component !== newNode.component)) {
     return (element: Element) => {
       const newElement = createElement(newNode)
       element.replaceWith(newElement)
       return newElement
+    }
+  }
+
+  if (isVirtualComponent(oldNode) && isVirtualComponent(newNode)) {
+    return (element: Element) => {
+      patchComponent(oldNode, newNode)
+      return element
     }
   }
 

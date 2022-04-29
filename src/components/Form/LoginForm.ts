@@ -39,7 +39,7 @@ export class LoginForm extends Component<{}, State> {
 <form class="auth-form" autocomplete="off" ${{ onSubmit: this.form.submitHandler }}>
   <h2 class="auth-form__title">Вход</h2>
   ${TextField({ id: 'input-login', label: 'Логин', name: 'login', ...this.form.fieldProps('login') })}
-  ${TextField({ id: 'input-password', random: Math.random(), label: 'Пароль', name: 'password', ...this.form.fieldProps('password'), type: 'password' })}
+  ${TextField({ id: 'input-password', label: 'Пароль', name: 'password', ...this.form.fieldProps('password'), type: 'password' })}
 
   <div class="auth-form__actions">
     ${Button({ children: 'Авторизоваться', type: 'submit', className: 'auth-form__submit' })}

@@ -19,6 +19,7 @@ interface FormState<T> {
 }
 
 interface Component {
+  setProps: (v: unknown) => void
   getElement: () => Element
 }
 
@@ -55,6 +56,13 @@ interface VirtualElement {
   children: VirtualNode[]
   component?: new(props: unknown) => Component
   instance?: Component
+}
+
+interface VirtualComponent {
+  tagName: 'Component'
+  attributes: Record<string, string | EventListener>
+  instance: Component
+  component: new(props: unknown) => Component
 }
 
 type PossibleClass = string | boolean | undefined | null | Record<string, boolean | null | undefined> | PossibleClass[]

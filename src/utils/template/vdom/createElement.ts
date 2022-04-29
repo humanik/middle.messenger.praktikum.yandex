@@ -1,13 +1,13 @@
-import { isFalsy } from 'utils/helpers'
+import { isVirtualComponent } from '../helpers'
 
 export function createElement ($element: VirtualNode, isSvg: boolean = false): Node {
   if (typeof $element === 'string') {
     return document.createTextNode($element)
   }
 
-  if ($element.tagName === 'Component' && !isFalsy($element.component)) {
-    const CurrentComponent = $element.component
-    const instance = $element.instance ?? new CurrentComponent($element.attributes)
+  if (isVirtualComponent($element)) {
+    const Component = $element.component
+    const instance = $element.instance ?? new Component($element.attributes)
     $element.instance = instance
     return instance.getElement()
   }
