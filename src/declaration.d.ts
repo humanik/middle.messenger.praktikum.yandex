@@ -10,6 +10,14 @@ type UnknownRecord = Record<string, unknown>
 
 type ComponentTuple = [new (v?: unknown) => Component, Record<string, any>]
 
+interface FormState<T> {
+  form: {
+    values: T
+    touched: Partial<Record<StringKey<T>, boolean>>
+    isSubmitted: boolean
+  }
+}
+
 interface Component {
   getElement: () => Element
 }

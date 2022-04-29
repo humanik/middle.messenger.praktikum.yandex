@@ -32,7 +32,7 @@ export function maxLength (limit: number, errorMessage: string = `Не длин�
 
 export function email (errorMessage: string = 'Некорректный email'): (s: string) => void {
   return (source: string): void => {
-    const pattern = /^[a-z][\w\d-]+[\w\d]@[a-z\d][\w\d\-_]*[a-z\d]\.\w{2,}$/i
+    const pattern = /^[a-z][\w\d-]*[\w\d]@[a-z\d][a-z\d-]*[a-z\d]\.\w{2,}$/i
     if (source.match(pattern) == null) {
       throw new Error(errorMessage)
     }
@@ -95,7 +95,15 @@ export function password (): (s: string) => void {
       throw new Error('Добавьте заглавную букву')
     }
     if (source.match(/\d/) === null) {
-      throw new Error('Добавите цифру')
+      throw new Error('Добавьте цифру')
+    }
+  }
+}
+
+export function same (getValue: () => string, errorMessage: string = 'Пароль не совпадает'): (s: string) => void {
+  return (source: string): void => {
+    if (source !== getValue()) {
+      throw new Error(errorMessage)
     }
   }
 }
