@@ -14,9 +14,7 @@ export function diffAttributes (
         elem.addEventListener(name, newValue)
         return elem
       })
-    }
-
-    if (typeof newValue === 'string' && newValue !== oldValue) {
+    } else if (typeof newValue === 'string' && newValue !== oldValue) {
       patches.push((elem: Element) => {
         elem.setAttribute(name, newValue)
         return elem
@@ -34,9 +32,7 @@ export function diffAttributes (
         elem.removeEventListener(name, oldValue)
         return elem
       })
-    }
-
-    if (typeof oldValue === 'string' && !(name in newAttributes)) {
+    } else if (typeof oldValue === 'string' && !(name in newAttributes)) {
       patches.push((elem: Element) => {
         elem.removeAttribute(name)
         return elem
