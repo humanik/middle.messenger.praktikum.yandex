@@ -1,15 +1,20 @@
 {
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "4.17.3"
   },
   "devDependencies": {
     "@parcel/transformer-inline-string": "^2.4.1",
     "@parcel/transformer-sass": "^2.4.1",
-    "eslint-config-standard": "^16.0.3",
-    "parcel": "^2.4.1"
+    "@types/jest": "^27.4.1",
+    "concurrently": "^7.1.0",
+    "eslint-config-standard-with-typescript": "^21.0.1",
+    "parcel": "^2.4.1",
+    "stylelint-config-standard-scss": "^3.0.0",
+    "ts-jest": "^27.1.4"
   },
   "alias": {
     "pages": "./src/pages",
+    "utils": "./src/utils",
     "images": "./src/images",
     "template": "./src/template",
     "components": "./src/components"
@@ -18,7 +23,13 @@
   "scripts": {
     "dev": "parcel",
     "start": "node server.js",
-    "build": "parcel build"
+    "build": "parcel build",
+    "fix": "concurrently npm:fix:*",
+    "fix:js": "eslint src --fix",
+    "fix:scss": "stylelint 'src/**/*.scss' --fix",
+    "lint": "concurrently npm:lint:*",
+    "lint:js": "eslint src",
+    "lint:scss": "stylelint 'src/**/*.scss'"
   },
   "engines": {
     "node": ">=12"
